@@ -1,9 +1,4 @@
-# src/eda.py
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
-
-def plot_time_series(df, columns, title="Time Series Plot"):
-    df.plot(x='Timestamp', y=columns, figsize=(10, 6))
-    plt.title(title)
-    plt.show()
+def clean_data(df):
+    df = df.dropna(subset=['GHI', 'DNI', 'DHI'])
+    df = df[df['GHI'] >= 0]  # Remove negative solar radiation values
+    return df
